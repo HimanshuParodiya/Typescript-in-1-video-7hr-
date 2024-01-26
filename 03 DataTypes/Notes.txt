@@ -1,0 +1,26 @@
+
+// Commands
+
+
+
+
+
+
+
+// Operations
+Same folder structure
+
+
+
+
+// data type
+
+any = It means it could be anything (try to avoid it as much as we can )
+union = it could be multiple datatype
+
+
+
+
+
+
+
