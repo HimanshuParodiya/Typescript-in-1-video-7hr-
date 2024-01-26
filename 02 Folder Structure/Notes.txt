@@ -1,0 +1,36 @@
+
+// Commands
+ 1) ts -init  ====> to generate tsconfig.json
+
+
+
+
+
+
+
+// Operations
+1) create 2 folders 
+        dist
+            index.html
+        src
+            index.ts
+
+2) ts -init
+
+3) change target to ES6 in tsconfig.json
+
+4) Add a rootDir to. ./src in tsconfig.json
+
+5) Add a outDir to. ./dist in tsconfig.json
+
+6) Now just run tsc -w
+
+7) In the dist folder it creates a file index.js this time without using var including use strict
+
+
+
+
+
+
+
+
