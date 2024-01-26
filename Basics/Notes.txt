@@ -1,0 +1,6 @@
+Cannot redeclare block-scoped variable 'a'
+we are getting this error because in the sample.js we are getting var
+
+
+// we can enable watch mode by 
+tsc ./sample.ts -w
