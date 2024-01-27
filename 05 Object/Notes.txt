@@ -1,0 +1,51 @@
+
+// Commands
+
+
+
+
+
+
+
+// Operations
+
+
+// Type Example
+
+type Person = {
+  name: string;
+  age: number;
+};
+
+type Employee = {
+  jobTitle: string;
+};
+
+type PersonWithJob = Person & Employee;
+
+const employeeInfo: PersonWithJob = {
+  name: 'John Doe',
+  age: 30,
+  jobTitle: 'Software Engineer',
+};
+
+
+
+
+// Interface Example
+type Person = {
+  name: string;
+  age: number;
+};
+
+type ReadonlyPerson = {
+  readonly [Key in keyof Person]: Person[Key];
+};
+
+const person: ReadonlyPerson = {
+  name: 'Alice',
+  age: 25,
+};
+
+// The properties in ReadonlyPerson are now readonly
+person.name = 'Bob'; // Error: Cannot assign to 'name' because it is a read-only property.
