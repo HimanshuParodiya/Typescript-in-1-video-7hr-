@@ -1,0 +1,16 @@
+
+// Commands
+
+
+
+
+
+
+
+// Operations
+We gonna see two keywords a lot (type and interface)
+
+so let's see what it is
+Type
+
+
