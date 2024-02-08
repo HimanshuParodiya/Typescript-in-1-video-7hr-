@@ -1,6 +1,9 @@
+import { useState } from "react";
 import Box from "./components/Box";
 
 function App() {
+  const [val, setVal] = useState<string>("");
+
   return (
     <>
       <div>
@@ -28,7 +31,7 @@ function App() {
 
         {/* // Generic  */}
 
-        <Box label="Search" value={""} onChange={() => {}} />
+        <Box label="Search" value={val} setter={setVal} />
       </div>
     </>
   );
