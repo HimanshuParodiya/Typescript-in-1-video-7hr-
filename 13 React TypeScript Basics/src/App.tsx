@@ -15,7 +15,7 @@ function App() {
         /> */}
 
         {/* // children can also be pass as  */}
-        <Box
+        {/* <Box
           // heading={23} //Type 'number' is not assignable to type 'string'
           heading="This is box heading"
           count={1}
@@ -24,7 +24,11 @@ function App() {
           }}
         >
           {"This is also an example of passing children"}
-        </Box>
+        </Box> */}
+
+        {/* // Generic  */}
+
+        <Box label="Search" value={""} onChange={() => {}} />
       </div>
     </>
   );

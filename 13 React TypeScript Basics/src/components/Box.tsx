@@ -1,22 +1,25 @@
-import { ReactNode } from "react";
+type InputValType = string | number;
 
-type PropsType = {
-  heading: string;
-  count?: number; // ? for adding default props
-  func: () => void;
-  children: ReactNode;
+type PropsType<T> = {
+  label: string;
+  value: T; // Cannot find name 'T' so we pass <T> after PropsType
+  onChange: () => void;
 };
 
-const Box = ({ heading, count = 5, func, children }: PropsType) => {
-  // const Box = ({ heading }: { heading: string }) => {
-  func();
+const Box = <T extends InputValType>({
+  label,
+  value,
+  onChange,
+}: PropsType<T>) => {
+  // Extend the T For InputValType (because T is not assignable to value) so now value can be string or number
   return (
-    <div>
-      <h1>{heading}</h1>
-      <p>{count}</p>
-      <p>{children}</p>
-    </div>
+    <form>
+      <label>{label}</label>
+      <input type="text" value={value} onChange={onChange} />
+    </form>
   );
 };
 
 export default Box;
+
+// <T,> declare generic
