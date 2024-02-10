@@ -1,35 +1,30 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import Header from "./components/Header";
+import { Suspense, lazy } from "react";
+import Loader from "./components/Loader";
+const Home = lazy(() => import("./components/Home"));
+const Result = lazy(() => import("./components/Result"));
+const Learning = lazy(() => import("./components/Learning"));
+const Quiz = lazy(() => import("./components/Quiz"));
 
-function App() {
-  const [count, setCount] = useState(0)
-
+const App = () => {
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    <div>
+      <Router>
+        <Header />
+        <Suspense fallback={<Loader />}>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/learn" element={<Learning />} />
+            <Route path="/quiz" element={<Quiz />} />
+            <Route path="/result" element={<Result />} />
+          </Routes>
+        </Suspense>
+      </Router>
+    </div>
+  );
+};
 
-export default App
+export default App;
+
+// Code splitting is a technique in web development where a large JavaScript bundle, which contains the entire codebase of an application, is broken down into smaller and more manageable pieces. These smaller pieces, or "chunks," can be loaded on-demand, leading to more efficient resource utilization and faster initial load times for web applications.
