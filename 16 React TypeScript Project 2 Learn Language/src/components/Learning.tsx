@@ -1,12 +1,24 @@
 import { ArrowBack, VolumeUp } from "@mui/icons-material";
 import { Button, Container, Stack, Typography } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
+import { translateWords } from "../utils/features";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  getWordsFail,
+  getWordsRequest,
+  getWordsSuccess,
+} from "../store/slices";
+import Loader from "./Loader";
 
 const Learning = () => {
   const [questionCount, setQuestionCount] = useState<number>(0);
   const params = useSearchParams()[0].get("language") as LanguageType;
   console.log(params); // ja for japanese
+  const dispatch = useDispatch();
+  const { loading, error, words } = useSelector(
+    (state: { root: StateType }) => state.root
+  );
 
   const navigate = useNavigate();
 
@@ -14,6 +26,16 @@ const Learning = () => {
     setQuestionCount((prev) => prev + 1);
   };
 
+  useEffect(() => {
+    dispatch(getWordsRequest());
+    translateWords(params)
+      .then((arr) => dispatch(getWordsSuccess(arr)))
+      .catch((error: string) => dispatch(getWordsFail(error)));
+  }, []);
+
+  if (loading) {
+    return <Loader />;
+  }
   return (
     <Container
       maxWidth={"sm"}
@@ -34,10 +56,10 @@ const Learning = () => {
 
       <Stack direction={"row"} spacing={"1rem"}>
         <Typography variant="h4">
-          {questionCount + 1} - {"Sample"}
+          {questionCount + 1} - {words[questionCount]?.word}
         </Typography>
         <Typography color={"blue"} variant="h4">
-          : {"Lol"}
+          : {words[questionCount]?.meaning}
         </Typography>
         <Button
           sx={{
